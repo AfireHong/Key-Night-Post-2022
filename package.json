@@ -45,12 +45,6 @@
     "typescript": "^4.5.4",
     "vite": "^2.9.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
   "lint-staged": {
     "*.{js,css,md,ts,tsx}": "prettier --write"
   }
