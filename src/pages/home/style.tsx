@@ -29,6 +29,11 @@ export const HomeWrapper = styled.div`
       box-shadow: 1px 1px 2px #acacac;
     }
   }
+  .pageination {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+  }
   @media screen and (max-width: 768px) {
     .slogan-box {
       font-size: 1rem;

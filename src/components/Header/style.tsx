@@ -5,6 +5,11 @@ const TabList = styled.div`
   justify-content: space-between;
   max-width: 380px;
   flex-direction: flex-end;
+  .sidetab-tips {
+    text-align: center;
+    font-size: 12px;
+    color: #757474;
+  }
 `;
 const TabItem = styled.div`
   cursor: pointer;
@@ -42,6 +47,7 @@ const HeaderContainer = styled.div`
   padding: 0 10vw;
   height: 80px;
   background: #fff;
+  position: fixed;
   z-index: 9999;
   box-shadow: 1px 1px 18px #b5b5b5;
   .burger div {

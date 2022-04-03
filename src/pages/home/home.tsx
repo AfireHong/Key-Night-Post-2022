@@ -4,27 +4,38 @@ import ArticleCard from "@/components/ArticleCard";
 import { Iarticle } from "../../typings/index";
 import ArticleAPI from "@/api/article";
 import Loading from "@/components/Loading";
-
+import Pagination from "@mui/material/Pagination";
+interface PostInfo {
+  rows: Iarticle[];
+  count: number;
+  pages: number;
+}
 const Home: FC = () => {
-  // let articleList: Iarticle[] = [];
-  const [articleList, setList] = useState([]);
-  const [visible, setVisible] = useState(true);
-  const getArticleList = async () => {
-    const { data, code } = await ArticleAPI.articleList();
+  const [postInfo, setList] = useState<PostInfo>();
+  const [visible, setVisible] = useState(false);
+
+  // 获取文章列表
+  const getArticleList = async (page = 1, pageSize = 5) => {
+    setVisible(true);
+    const { data, code } = await ArticleAPI.articleList(pageSize, page);
     if (code === 200) {
-      setList(data.rows);
-    } else {
-      setList([]);
+      setList({
+        rows: data.rows,
+        count: data.count,
+        pages: Math.ceil(data.count / pageSize),
+      });
     }
     setVisible(false);
   };
+
+  // 切换页码
+  const pageChange = (e: unknown, page: number) => {
+    getArticleList(page);
+  };
+
   useEffect(() => {
     getArticleList();
   }, []);
-
-  const articleCardList = articleList.map((item: Iarticle, index) => (
-    <ArticleCard key={item.article_id} info={item} index={index} />
-  ));
   return (
     <HomeWrapper>
       <div className="home-banner">
@@ -34,8 +45,17 @@ const Home: FC = () => {
       </div>
       <div className="article-list">
         <div className="decoration-line"></div>
-        <Loading visible={visible}>{articleCardList}</Loading>
+        <Loading visible={visible}>
+          {postInfo?.rows.map((item: Iarticle, index) => (
+            <ArticleCard key={item.article_id} info={item} index={index} />
+          ))}
+        </Loading>
       </div>
+      <Pagination
+        className="pageination"
+        count={postInfo?.pages}
+        onChange={pageChange}
+      />
     </HomeWrapper>
   );
 };
