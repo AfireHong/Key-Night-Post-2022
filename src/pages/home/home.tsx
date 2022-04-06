@@ -40,7 +40,7 @@ const Home: FC = () => {
     <HomeWrapper>
       <div className="home-banner">
         <div className="slogan-box">
-          <span className="slogan">无尽的远方，无穷的人们，都和我有关!</span>
+          <span className="slogan">无尽的远方，无穷的人们，都和我有关。</span>
         </div>
       </div>
       <div className="article-list">

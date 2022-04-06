@@ -49,7 +49,7 @@ const Content: FC<Icontent> = (props) => {
 export default Content;
 
 const ArticleContent = styled.div`
-  max-width: 720px;
+  max-width: 850px;
   margin: 0 auto;
   transition: 0.3s ease-in-out;
   animation: contentSlideIn 1s;

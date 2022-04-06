@@ -17,9 +17,9 @@ export const disableScroll = (): void => {
 export const enableScroll = (): void => {
   document.body.removeEventListener("touchmove", preventFun);
   document.body.setAttribute("style", "position: initial; height: 100%;");
-  // (document.scrollingElement as Element).scrollTop = height;
-  window.scrollTo({
-    top: height,
-    behavior: "auto",
-  });
+  (document.scrollingElement as Element).scrollTop = height;
+  // window.scrollTo({
+  //   top: height,
+  //   behavior: "auto",
+  // });
 };

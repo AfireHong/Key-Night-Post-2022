@@ -7,6 +7,8 @@ const TabList = styled.div`
   flex-direction: flex-end;
   .sidetab-tips {
     text-align: center;
+    width: 100%;
+    overflow: hidden;
     font-size: 12px;
     color: #757474;
   }

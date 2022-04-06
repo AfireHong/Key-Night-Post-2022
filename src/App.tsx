@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import { BackToTop } from "./components/BackToTop";
 
 function App() {
+  document.title = "Key Night";
   return (
     <div className="App">
       <BrowserRouter>

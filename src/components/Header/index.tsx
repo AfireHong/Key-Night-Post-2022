@@ -32,7 +32,7 @@ const Header: FC = () => {
   let aniIndex = 0;
   return (
     <HeaderContainer>
-      <Logo> Hey Hong </Logo>
+      <Logo> Key Night </Logo>
       <TabList ref={headerRef} className={showRight ? "open" : ""}>
         {tabList.map((item, index) => {
           aniIndex++;

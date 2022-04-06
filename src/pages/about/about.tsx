@@ -3,12 +3,12 @@ export default function About() {
   return (
     <AboutWrapper>
       <div className="content">
-        <p>Hi~</p>
-        <p>你发现我了</p>
-        <p>这里是一名前端工程师</p>
+        <p>这里是一名初级前端工程师</p>
         <p>Vue/React、Webpack/Vite、Node</p>
         <p>From 长沙</p>
-        <p>很高兴认识你</p>
+        <br />
+        <p>联系我：</p>
+        <p>email: varhong2018@gmail.com</p>
       </div>
     </AboutWrapper>
   );
