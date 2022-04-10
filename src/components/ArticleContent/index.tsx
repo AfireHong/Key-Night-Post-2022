@@ -36,6 +36,7 @@ const Content: FC<Icontent> = (props) => {
       <ArticleContent>
         <div className="article">
           <div className="article-title">{props.title}</div>
+          <div className="title-bottom-line"></div>
           <div
             dangerouslySetInnerHTML={{
               __html: translateMarkdown(props.content || ""),
@@ -56,11 +57,20 @@ const ArticleContent = styled.div`
   .article {
     margin: 40px 10px;
     background: #faf6e5;
-    padding: 14px;
+    padding: 20px 16px 40px 16px;
+    min-height: 60vh;
     box-shadow: 0 10px 20px rgb(0 0 0 / 20%);
   }
   .article-title {
     font-size: 28px;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+  .title-bottom-line {
+    width: 120px;
+    height: 2px;
+    background: #d3cdbb;
+    margin: 0 auto;
   }
   /* .hljs-con {
     position: relative;
@@ -98,15 +108,22 @@ const ArticleContent = styled.div`
       color: #999;
       pointer-events: none;
     }
-    @keyframes contentSlideIn {
-      from {
-        opacity: 0;
-        transform: translateY(200px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+  }
+
+  blockquote {
+    border-left: 3px solid #d3cdbb;
+    margin-left: 12px;
+    padding-left: 10px;
+  }
+
+  @keyframes contentSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(200px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 `;

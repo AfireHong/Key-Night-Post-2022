@@ -21,13 +21,13 @@ export const HomeWrapper = styled.div`
   .article-list {
     max-width: 720px;
     margin: -80px auto 0;
-    .decoration-line {
+    /* .decoration-line {
       height: 2px;
       width: 60%;
       background: #d4d4d4;
       margin: 0 auto 30px;
       box-shadow: 1px 1px 2px #acacac;
-    }
+    } */
   }
   .pageination {
     display: flex;

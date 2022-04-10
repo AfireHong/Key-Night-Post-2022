@@ -55,7 +55,6 @@ export default class Server {
         params: null,
         data: null,
         // headers: { 'content-type': 'application/x-www-form-urlencoded' },
-        withCredentials: true, //是否携带cookies发起请求
         validateStatus: (status: number) => {
           return status >= 200 && status < 300;
         },
