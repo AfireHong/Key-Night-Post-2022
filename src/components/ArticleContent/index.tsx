@@ -58,7 +58,7 @@ const ArticleContent = styled.div`
     margin: 40px 10px;
     background: #faf6e5;
     padding: 20px 16px 40px 16px;
-    min-height: 60vh;
+    min-height: 50vh;
     box-shadow: 0 10px 20px rgb(0 0 0 / 20%);
   }
   .article-title {

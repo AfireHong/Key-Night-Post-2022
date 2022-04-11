@@ -13,7 +13,7 @@ const useArticle = (id: string, setVisble: (value: boolean) => void) => {
   const [articleInfo, setInfo] = useState<Iarticle>();
   const getArticle = useCallback(async () => {
     setVisble(true);
-    const { data, code } = await article.articleInfo(parseInt(id));
+    const { data, code } = await article.articleInfo(id);
     if (code === 200) {
       setInfo(data);
       window.scrollTo(0, 0);

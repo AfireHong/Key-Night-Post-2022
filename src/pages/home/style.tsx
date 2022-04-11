@@ -20,7 +20,7 @@ export const HomeWrapper = styled.div`
   }
   .article-list {
     max-width: 720px;
-    margin: -80px auto 0;
+    margin: -100px auto 0;
     /* .decoration-line {
       height: 2px;
       width: 60%;
