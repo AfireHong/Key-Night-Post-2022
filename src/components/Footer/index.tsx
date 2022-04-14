@@ -18,8 +18,8 @@ export default memo(function () {
   const nowYear = date.getFullYear();
   return (
     <FooterContainer>
-      <div className="foot-info">版权所有</div>
-      <div className="foot-year">2021-{nowYear}</div>
+      <div className="foot-info">Key Night</div>
+      <div className="foot-year">POST-{nowYear}</div>
     </FooterContainer>
   );
 });

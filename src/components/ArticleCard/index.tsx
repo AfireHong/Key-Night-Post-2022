@@ -96,7 +96,6 @@ const ArticleCardStyle = styled.div`
     .article-summary {
       color: #85888f;
       font-size: 0.8em;
-      margin-top: 1em;
       overflow: hidden;
       text-overflow: ellipsis;
     }
@@ -107,11 +106,11 @@ const ArticleCardStyle = styled.div`
     .article-info {
       color: #85888f;
       font-size: 0.7em;
-      margin-top: 1.4em;
       position: absolute;
       bottom: 1.4em;
       display: flex;
       flex-wrap: wrap;
+      justify-content: flex-start;
       span {
         margin-right: 0.8em;
         display: flex;
@@ -161,11 +160,11 @@ const ArticleCardStyle = styled.div`
       justify-content: space-between;
       .article-summary {
         white-space: nowrap;
-        margin-top: 0.5em;
       }
       .article-info {
         position: relative;
         bottom: 0em;
+        width: 100%;
       }
     }
   }
