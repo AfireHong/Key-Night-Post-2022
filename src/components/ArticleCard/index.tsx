@@ -111,6 +111,7 @@ const ArticleCardStyle = styled.div`
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
+      white-space: nowrap;
       span {
         margin-right: 0.8em;
         display: flex;
