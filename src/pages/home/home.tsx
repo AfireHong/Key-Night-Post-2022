@@ -29,11 +29,11 @@ const Home: FC = () => {
   };
 
   // 切换页码
-  const pageChange = (e: unknown, page: number) => {
+  const pageChange = async (e: unknown, page: number) => {
+    await getArticleList(page);
     window.scrollTo({
       top: 0,
     });
-    getArticleList(page);
   };
 
   useEffect(() => {

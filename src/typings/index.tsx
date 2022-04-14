@@ -28,3 +28,8 @@ export interface ResponseData<T = any> {
   msg: string;
   data: T;
 }
+export interface tag {
+  tag_id: number;
+  tag_name: string;
+  count: number;
+}

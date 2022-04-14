@@ -6,7 +6,7 @@ const Header: FC = () => {
   const tabList = [
     { title: "主页", path: "/home" },
     // { title: "分类", path: "/category" },
-    // { title: "归档", path: "/archive" },
+    { title: "归档", path: "/archive" },
     { title: "关于", path: "/about" },
     // { title: "友链", path: "/friends" },
   ];
@@ -58,7 +58,7 @@ const Header: FC = () => {
         <RightInfo
           style={{
             animation: showRight
-              ? `0.3s ease-in slideIn forwards ${0.1 * aniIndex + 0.3}s`
+              ? `.3s ease-in slideIn forwards ${0.1 * aniIndex + 0.6}s`
               : "",
           }}
         >

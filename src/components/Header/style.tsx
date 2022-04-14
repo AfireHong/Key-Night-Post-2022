@@ -83,7 +83,7 @@ const HeaderContainer = styled.div`
     }
     ${RightInfo} {
       display: block;
-      bottom: 100px;
+      bottom: 140px;
       transform: translateX(20px);
       opacity: 0;
     }
