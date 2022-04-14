@@ -30,6 +30,9 @@ const Home: FC = () => {
 
   // 切换页码
   const pageChange = (e: unknown, page: number) => {
+    window.scrollTo({
+      top: 0,
+    });
     getArticleList(page);
   };
 

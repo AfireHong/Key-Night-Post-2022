@@ -2,6 +2,8 @@ import { FC } from "react";
 import { Iarticle } from "../../typings/index";
 import { useHistory } from "react-router";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBox, faClock } from "@fortawesome/free-solid-svg-icons";
 interface CardProps {
   info: Iarticle;
   index: number;
@@ -12,9 +14,9 @@ const ArticleCard: FC<CardProps> = (props) => {
   const toArticlePage = () => {
     history.push("./article", { id: info.article_id });
   };
-  const tags = info.tags.map((item) => (
-    <span key={item.tag_id}>{item.tag_name}</span>
-  ));
+  // const tags = info.tags.map((item) => (
+  //   <span key={item.tag_id}>{item.tag_name}</span>
+  // ));
   return (
     <ArticleCardStyle
       img_url={info.img_url}
@@ -35,9 +37,18 @@ const ArticleCard: FC<CardProps> = (props) => {
         </div>
         <div className="article-summary">{info.summary}</div>
         <div className="article-info">
-          <span>{info.create_time?.split(" ")[0]}</span>
-          <span>{info.cate?.cate_name || ""}</span>
-          {tags}
+          <span>
+            <FontAwesomeIcon icon={faClock} />
+            {info.create_time?.split(" ")[0]}
+          </span>
+          <span className="cate-info">
+            <FontAwesomeIcon icon={faBox} />
+            {info.cate?.cate_name || ""}
+          </span>
+          {/* <span>
+            <FontAwesomeIcon icon={faTags} />
+            {tags}
+          </span> */}
         </div>
       </div>
     </ArticleCardStyle>
@@ -99,8 +110,19 @@ const ArticleCardStyle = styled.div`
       margin-top: 1.4em;
       position: absolute;
       bottom: 1.4em;
+      display: flex;
+      flex-wrap: wrap;
       span {
         margin-right: 0.8em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        svg {
+          margin-right: 4px;
+        }
+      }
+      .cate-info {
+        cursor: pointer;
       }
     }
   }
@@ -132,7 +154,11 @@ const ArticleCardStyle = styled.div`
       margin: 0;
       padding: 0.5em;
       width: 100%;
+      height: 100%;
+      display: flex;
       overflow: hidden;
+      flex-direction: column;
+      justify-content: space-between;
       .article-summary {
         white-space: nowrap;
         margin-top: 0.5em;

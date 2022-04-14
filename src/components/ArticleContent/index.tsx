@@ -119,7 +119,7 @@ const ArticleContent = styled.div`
   @keyframes contentSlideIn {
     from {
       opacity: 0;
-      transform: translateY(200px);
+      transform: translateY(50px);
     }
     to {
       opacity: 1;

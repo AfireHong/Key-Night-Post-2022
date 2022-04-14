@@ -10,7 +10,7 @@ export function BackToTop() {
       if (shouldShow !== show) {
         switchShow(shouldShow);
       }
-    }, 300) as EventListener;
+    }, 100) as EventListener;
     document.addEventListener("scroll", listener);
     return () => document.removeEventListener("scroll", listener);
   }, [show]);
