@@ -34,9 +34,9 @@ const Logo = styled.div`
   flex: 1;
 `;
 const RightInfo = styled.div`
-  display: none;
   position: absolute;
   bottom: 20px;
+  display: none;
 `;
 const HeaderContainer = styled.div`
   top: 0;
@@ -83,7 +83,6 @@ const HeaderContainer = styled.div`
     ${RightInfo} {
       display: block;
       bottom: 140px;
-      transform: translateX(20px);
       opacity: 0;
     }
     .open {

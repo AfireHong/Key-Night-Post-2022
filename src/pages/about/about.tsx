@@ -3,24 +3,25 @@ import styled from "styled-components";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faWeixin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Snackbar from "@mui/material/Snackbar";
 import { useState } from "react";
-import { copyTextToClipboard } from "@/utils";
+import { Popover } from "@mui/material";
+import * as React from "react";
+import wechatImg from "@/assets/images/wechat.jpg";
 
-const map = {
-  wechat: "Afire_HonG",
-  email: "varhong2018@gmail.com",
-};
+// const map = {
+//   wechat: "Afire_HonG",
+//   email: "varhong2018@gmail.com",
+// };
+const wechatEl = "wechatEl";
 export default function About() {
-  const [open, setOpen] = useState<boolean>();
-  const clickContactHandler = (type: "wechat" | "email") => {
-    const text = map[type];
-    copyTextToClipboard(text)
-      .then(() => {
-        setOpen(true);
-      })
-      .catch((e) => console.log(e));
+  const [anchorEl, setAnchorEl] = useState<SVGElement | null>(null);
+  const handlePopoverOpen = (event: React.MouseEvent<SVGElement>) => {
+    setAnchorEl(event.currentTarget);
   };
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+  const open = Boolean(anchorEl);
   return (
     <Wrapper title={"关于"}>
       <AboutWrapper>
@@ -29,17 +30,18 @@ export default function About() {
         <div className="contact">
           {/*<p>contact</p>*/}
           <p className="contact-item">
-            <FontAwesomeIcon
-              icon={faEnvelope}
-              onClick={() => {
-                clickContactHandler("email");
-              }}
-            />
+            <a
+              href="mailto:varhong2018@gmail.com?subject=标题&body=内容"
+              style={{ color: "#24292e" }}
+            >
+              <FontAwesomeIcon icon={faEnvelope} aria-describedby={wechatEl} />
+            </a>
             <FontAwesomeIcon
               icon={faWeixin}
-              onClick={() => {
-                clickContactHandler("wechat");
-              }}
+              aria-owns={open ? "mouse-over-popover" : undefined}
+              aria-haspopup="true"
+              onMouseEnter={handlePopoverOpen}
+              onMouseLeave={handlePopoverClose}
             />
           </p>
         </div>
@@ -54,13 +56,31 @@ export default function About() {
         <p>欢迎与我交流</p>
         <br />
       </AboutWrapper>
-      <Snackbar
+
+      <Popover
+        id="mouse-over-popover"
+        sx={{
+          pointerEvents: "none",
+        }}
         open={open}
-        autoHideDuration={2000}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-        onClose={() => setOpen(false)}
-        message="copied！"
-      />
+        anchorEl={anchorEl}
+        anchorOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        transformOrigin={{
+          vertical: "top",
+          horizontal: "center",
+        }}
+        onClose={handlePopoverClose}
+        disableRestoreFocus
+      >
+        <img
+          src={wechatImg}
+          style={{ width: "200px", height: "200px" }}
+          alt={"微信"}
+        />
+      </Popover>
     </Wrapper>
   );
 }
