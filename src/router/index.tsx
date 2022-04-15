@@ -26,7 +26,7 @@ const routes: RouteConfig[] = [
   },
   {
     path: "/tag",
-    component: lazy(() => import("@/pages/tag")),
+    component: lazy(() => import("@/pages/tag/tag")),
   },
   {
     path: "/friends",

@@ -60,7 +60,6 @@ export default ArticleCard;
 const ArticleCardStyle = styled.div`
   padding: 10px;
   display: flex;
-  flex-direction: no-wrap;
   background: #f9f9f9;
   margin: 40px 10px;
   animation: slideIn 0.6s ease-in-out;

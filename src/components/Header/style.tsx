@@ -4,7 +4,6 @@ const TabList = styled.div`
   /* flex: 1; */
   justify-content: space-between;
   max-width: 380px;
-  flex-direction: flex-end;
   .sidetab-tips {
     text-align: center;
     width: 100%;
@@ -30,7 +29,7 @@ const TabItem = styled.div`
 `;
 const Logo = styled.div`
   font-size: 24px;
-  font-weight: 600px;
+  font-weight: 600;
   color: #85888f;
   flex: 1;
 `;
