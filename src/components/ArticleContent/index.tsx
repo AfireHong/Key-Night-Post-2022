@@ -4,20 +4,16 @@ import "prismjs/themes/prism-dark.min.css";
 import styled from "styled-components";
 
 import { FC } from "react";
+
 interface Icontent {
   title: string | undefined;
   content: string | undefined;
 }
 const translateMarkdown = (text: string) => {
   marked.setOptions({
-    renderer: new marked.Renderer(),
+    renderer: new marked.Renderer(undefined),
     highlight(code) {
-      const html = Prism.highlight(
-        code,
-        Prism.languages.javascript,
-        "javascript"
-      );
-      return html;
+      return Prism.highlight(code, Prism.languages.javascript, "javascript");
     },
     pedantic: false,
     gfm: true,
@@ -62,7 +58,7 @@ const ArticleContent = styled.div`
     box-shadow: 0 10px 20px rgb(0 0 0 / 20%);
   }
   .article-title {
-    font-size: 28px;
+    font-size: 24px;
     text-align: center;
     padding-bottom: 20px;
   }
@@ -72,13 +68,9 @@ const ArticleContent = styled.div`
     background: #d3cdbb;
     margin: 0 auto;
   }
-  /* .hljs-con {
-    position: relative;
-  } */
   pre {
     padding: 8px 2px;
     border-radius: 5px;
-    /* position: relative; */
     overflow: scroll;
     background: #2f2f2f;
     ol {

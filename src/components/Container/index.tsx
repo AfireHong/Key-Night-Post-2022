@@ -1,4 +1,4 @@
-import { ReactChild, ReactFragment, ReactPortal } from "react";
+import { ReactChild, ReactFragment, ReactPortal, Suspense } from "react";
 import styled from "styled-components";
 export default function Container(props: {
   children:
@@ -9,7 +9,11 @@ export default function Container(props: {
     | null
     | undefined;
 }) {
-  return <PageContainer>{props.children}</PageContainer>;
+  return (
+    <Suspense fallback={"loading"}>
+      <PageContainer>{props.children}</PageContainer>
+    </Suspense>
+  );
 }
 const PageContainer = styled.div`
   min-height: calc(100vh - 180px);

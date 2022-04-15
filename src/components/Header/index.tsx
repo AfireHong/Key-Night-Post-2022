@@ -58,7 +58,7 @@ const Header: FC = () => {
         <RightInfo
           style={{
             animation: showRight
-              ? `.3s ease-in slideIn forwards ${0.1 * aniIndex + 0.6}s`
+              ? `.3s ease-in fadeIn forwards ${0.1 * aniIndex + 0.6}s`
               : "",
           }}
         >
@@ -73,7 +73,7 @@ const Header: FC = () => {
       </TabList>
       <div
         className={[showRight ? "active burger" : "burger"].join(" ")}
-        onClick={() => switchMenu(showRight ? false : true)}
+        onClick={() => switchMenu(!showRight)}
       >
         <div className="top-line"></div>
         <div className="middle-line"></div>

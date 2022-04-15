@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import { HomeWrapper } from "./style";
 import ArticleCard from "@/components/ArticleCard";
-import { Iarticle } from "../../typings/index";
+import { Iarticle } from "@/typings";
 import ArticleAPI from "@/api/article";
 import Loading from "@/components/Loading";
 import Pagination from "@mui/material/Pagination";
@@ -9,6 +9,7 @@ interface PostInfo {
   rows: Iarticle[];
   count: number;
   pages: number;
+  page: number;
 }
 const Home: FC = () => {
   const [postInfo, setList] = useState<PostInfo>();
@@ -23,6 +24,7 @@ const Home: FC = () => {
         rows: data.rows,
         count: data.count,
         pages: Math.ceil(data.count / pageSize),
+        page: data.page,
       });
     }
     setVisible(false);
@@ -52,13 +54,16 @@ const Home: FC = () => {
           {postInfo?.rows.map((item: Iarticle, index) => (
             <ArticleCard key={item.article_id} info={item} index={index} />
           ))}
+          {!visible && (
+            <Pagination
+              className="pageination"
+              count={postInfo?.pages}
+              onChange={pageChange}
+              page={postInfo?.page}
+            />
+          )}
         </Loading>
       </div>
-      <Pagination
-        className="pageination"
-        count={postInfo?.pages}
-        onChange={pageChange}
-      />
     </HomeWrapper>
   );
 };

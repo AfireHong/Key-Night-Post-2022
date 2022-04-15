@@ -139,6 +139,15 @@ const HeaderContainer = styled.div`
         opacity: 1;
       }
     }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
   }
 `;
 export { HeaderContainer, TabItem, TabList, Logo, RightInfo };

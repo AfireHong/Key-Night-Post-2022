@@ -1,6 +1,7 @@
 import { home, about, article, friends, archive, category } from "@/pages";
 import { RouteConfig } from "react-router-config";
 import { Redirect } from "react-router-dom";
+import { lazy } from "react";
 const routes: RouteConfig[] = [
   { path: "/", exact: true, render: () => <Redirect to={"/home"} /> },
   {
@@ -22,6 +23,10 @@ const routes: RouteConfig[] = [
   {
     path: "/article",
     component: article,
+  },
+  {
+    path: "/tag",
+    component: lazy(() => import("@/pages/tag")),
   },
   {
     path: "/friends",

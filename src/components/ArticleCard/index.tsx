@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Iarticle } from "../../typings/index";
+import { Iarticle } from "@/typings";
 import { useHistory } from "react-router";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -164,7 +164,7 @@ const ArticleCardStyle = styled.div`
       }
       .article-info {
         position: relative;
-        bottom: 0em;
+        bottom: 0;
         width: 100%;
       }
     }
