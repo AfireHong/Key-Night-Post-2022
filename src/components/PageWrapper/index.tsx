@@ -17,7 +17,7 @@ export default PageWrapper;
 const Wrapper = styled.div`
   margin: 40px auto;
   max-width: 720px;
-  .title {
+  > .title {
     text-align: center;
     font-size: 24px;
     padding-bottom: 10px;
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
     width: 58px;
     margin: 0 auto;
   }
-  .content {
+  > .content {
     margin: 40px 10px;
     padding: 30px;
     background: #fff;

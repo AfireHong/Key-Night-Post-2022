@@ -10,14 +10,14 @@ export interface Itag {
 export interface Iarticle {
   article_id: number;
   title: string;
-  summary: string;
-  create_time: string;
+  summary?: string;
+  create_time?: string;
   modify_time?: string;
   content?: string;
-  cate: Icate;
-  tags: Itag[];
+  cate?: Icate;
+  tags?: Itag[];
   img_url?: string;
-  view_count: number;
+  view_count?: number;
 }
 
 export interface IarticleLsitItem {
@@ -32,4 +32,8 @@ export interface tag {
   tag_id: number;
   tag_name: string;
   count: number;
+}
+export interface yearArticle {
+  year: string;
+  list: Iarticle[];
 }

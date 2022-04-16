@@ -4,7 +4,8 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faWeixin } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { Popover } from "@mui/material";
+import Popper from "@mui/material/Popper";
+import Fade from "@mui/material/Fade";
 import * as React from "react";
 import wechatImg from "@/assets/images/wechat.jpg";
 
@@ -15,6 +16,8 @@ import wechatImg from "@/assets/images/wechat.jpg";
 const wechatEl = "wechatEl";
 export default function About() {
   const [anchorEl, setAnchorEl] = useState<SVGElement | null>(null);
+  //如果绑定到body上，点击了联系方式的图标后，移动端侧栏菜单无法展开
+  const target = document.getElementById("root");
   const handlePopoverOpen = (event: React.MouseEvent<SVGElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -51,36 +54,48 @@ export default function About() {
         <p>理想主义与浪漫主义人类</p>
         <p>From 长沙</p>
         <br />
-        <p>本博客由本人独立设计与开发</p>
-        <p>建立初衷是为了记录学习与生活</p>
+        <p>本博客建立初衷是为了记录学习与生活</p>
+        <p>设计与开发均由本人独立完成</p>
         <p>欢迎与我交流</p>
         <br />
       </AboutWrapper>
-
-      <Popover
-        id="mouse-over-popover"
-        sx={{
-          pointerEvents: "none",
-        }}
+      <Popper
+        container={target}
         open={open}
         anchorEl={anchorEl}
-        anchorOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        transformOrigin={{
-          vertical: "top",
-          horizontal: "center",
-        }}
-        onClose={handlePopoverClose}
-        disableRestoreFocus
+        placement={"bottom"}
+        transition
       >
-        <img
-          src={wechatImg}
-          style={{ width: "200px", height: "200px" }}
-          alt={"微信"}
-        />
-      </Popover>
+        {({ TransitionProps }) => (
+          <Fade {...TransitionProps} timeout={350}>
+            <img
+              src={wechatImg}
+              style={{ width: "200px", height: "200px" }}
+              alt={"微信"}
+            />
+          </Fade>
+        )}
+      </Popper>
+      {/*<Popover*/}
+      {/*  id="mouse-over-popover"*/}
+      {/*  sx={{*/}
+      {/*    pointerEvents: "none",*/}
+      {/*  }}*/}
+      {/*  open={open}*/}
+      {/*  anchorEl={anchorEl}*/}
+      {/*  anchorOrigin={{*/}
+      {/*    vertical: "top",*/}
+      {/*    horizontal: "center",*/}
+      {/*  }}*/}
+      {/*  transformOrigin={{*/}
+      {/*    vertical: "top",*/}
+      {/*    horizontal: "center",*/}
+      {/*  }}*/}
+      {/*  onClose={handlePopoverClose}*/}
+      {/*  disableRestoreFocus*/}
+      {/*>*/}
+
+      {/*</Popover>*/}
     </Wrapper>
   );
 }

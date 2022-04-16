@@ -60,6 +60,8 @@ const Header: FC = () => {
             animation: showRight
               ? `.3s ease-in fadeIn forwards ${0.1 * aniIndex + 0.6}s`
               : "",
+            width: "100%",
+            overflow: "hidden",
           }}
         >
           <div className="sidetab-tips">
