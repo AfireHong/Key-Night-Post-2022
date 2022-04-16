@@ -18,6 +18,7 @@ const getPlugins = (mode: string) => {
 };
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }: ConfigEnv) => ({
+  root: "./",
   plugins: getPlugins(mode),
   resolve: {
     alias: [{ find: "@", replacement: resolve(__dirname, "src") }],

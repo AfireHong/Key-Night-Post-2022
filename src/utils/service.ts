@@ -1,10 +1,6 @@
 import { ResponseData } from "@/typings";
 import axios from "axios";
-
-const baseURL =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:3001"
-    : "http://121.40.18.80:3001/";
+const baseURL = import.meta.env.VITE_APP_API;
 /**
  * 主要params参数
  * @params method {string} 方法名

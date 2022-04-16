@@ -1,7 +1,7 @@
 import Wrapper from "@/components/PageWrapper";
 import styled from "styled-components";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { faWeixin } from "@fortawesome/free-brands-svg-icons";
+import { faWeixin, faBilibili } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import Popper from "@mui/material/Popper";
@@ -46,6 +46,12 @@ export default function About() {
               onMouseEnter={handlePopoverOpen}
               onMouseLeave={handlePopoverClose}
             />
+            <a
+              href="https://space.bilibili.com/140121290"
+              style={{ color: "#24292e" }}
+            >
+              <FontAwesomeIcon icon={faBilibili} />
+            </a>
           </p>
         </div>
         <br />
@@ -104,8 +110,11 @@ const AboutWrapper = styled.div`
   text-align: center;
   line-height: 1;
   .contact-item {
+    display: flex;
+    justify-content: space-evenly;
+    width: 60%;
+    margin: auto;
     svg {
-      margin-right: 8px;
       font-size: 18px;
       cursor: pointer;
     }

@@ -4,12 +4,15 @@ import { useHistory } from "react-router-dom";
 import article from "@/api/article";
 import styled from "styled-components";
 import { yearArticle } from "@/typings";
+import { faTag } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 interface tagPageState {
   id: string;
+  name: string;
 }
 const Tag: FC = () => {
   const history = useHistory();
-  const { id } = history.location.state as tagPageState;
+  const { id, name } = history.location.state as tagPageState;
   const [list, setList] = useState<yearArticle[]>();
   const getArticle = async () => {
     const res = await article.articleByTAg(id);
@@ -23,30 +26,40 @@ const Tag: FC = () => {
   useEffect(() => {
     getArticle().catch((e) => console.log(e));
   }, []);
+  const titleContent = () => (
+    <>
+      <FontAwesomeIcon style={{ marginRight: "4px" }} icon={faTag} />
+      {name}
+    </>
+  );
   return (
-    <Wrapper title={"标签"}>
+    <Wrapper title={titleContent()}>
       <TagPage>
-        {list?.map((item, index) => (
-          <div className="year-content" key={index}>
-            <div className="year">
-              <h2>{item.year}</h2>
-            </div>
-            <div className="list">
-              {item.list.map((article) => (
-                <div
-                  className="list-item"
-                  onClick={() => toArticlePage(article.article_id)}
-                  key={article.article_id}
-                >
-                  <div className="list-date">
-                    {article?.create_time?.split(" ")[0]}
+        {list?.length ? (
+          list?.map((item, index) => (
+            <div className="year-content" key={index}>
+              <div className="year">
+                <h2>{item.year}</h2>
+              </div>
+              <div className="list">
+                {item.list.map((article) => (
+                  <div
+                    className="list-item"
+                    onClick={() => toArticlePage(article.article_id)}
+                    key={article.article_id}
+                  >
+                    <div className="list-date">
+                      {article?.create_time?.split(" ")[0]}
+                    </div>
+                    <div className="list-title">{article.title}</div>
                   </div>
-                  <div className="list-title">{article.title}</div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <div>暂无内容</div>
+        )}
       </TagPage>
     </Wrapper>
   );

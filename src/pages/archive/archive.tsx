@@ -18,7 +18,7 @@ const useTags = () => {
     }
   };
   const tagClick = (item: tag) => {
-    history.push("/tag", { id: item.tag_id });
+    history.push("/tag", { id: item.tag_id, name: item.tag_name });
   };
   useEffect(() => {
     getTags().catch();
@@ -27,7 +27,6 @@ const useTags = () => {
 };
 const Archive: FC = () => {
   const { tags, tagClick } = useTags();
-
   return (
     <Wrapper title={"归档"}>
       <ArchiveStyle>

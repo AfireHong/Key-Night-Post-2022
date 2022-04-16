@@ -2,7 +2,8 @@ import { FC } from "react";
 import styled from "styled-components";
 
 interface WrapperProp {
-  title?: FC | string;
+  title?: FC | string | JSX.Element;
+  otherProp?: any;
 }
 const PageWrapper: FC<WrapperProp> = (props) => (
   <>
@@ -22,7 +23,7 @@ const Wrapper = styled.div`
     font-size: 24px;
     padding-bottom: 10px;
     //border-bottom: 2px solid #9a9a9a;
-    width: 58px;
+    //width: 58px;
     margin: 0 auto;
   }
   > .content {

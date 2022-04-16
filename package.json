@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "dev": "vite --mode development",
+    "build": "tsc && vite build --mode production",
     "build:analyze": "tsc && vite build --mode analyze --debug",
     "preview": "vite preview",
     "prepare": "husky install"

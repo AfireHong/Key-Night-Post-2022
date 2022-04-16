@@ -9,17 +9,17 @@ import Loading from "../../components/Loading/index";
 interface articleId {
   id: string;
 }
-const useArticle = (id: string, setVisble: (value: boolean) => void) => {
+const useArticle = (id: string, setVisible: (value: boolean) => void) => {
   const [articleInfo, setInfo] = useState<Iarticle>();
   const getArticle = useCallback(async () => {
-    setVisble(true);
+    setVisible(true);
     const { data, code } = await article.articleInfo(id);
     if (code === 200) {
       setInfo(data);
       window.scrollTo(0, 0);
-      setVisble(false);
+      setVisible(false);
     }
-  }, [id, setVisble]);
+  }, [id, setVisible]);
   useEffect(() => {
     getArticle();
   }, [getArticle]);
@@ -28,8 +28,8 @@ const useArticle = (id: string, setVisble: (value: boolean) => void) => {
 const Article: FC = () => {
   const history = useHistory();
   const { id } = history.location.state as articleId;
-  const [visible, setVisble] = useState(true);
-  const [articleInfo] = useArticle(id, setVisble);
+  const [visible, setVisible] = useState(true);
+  const [articleInfo] = useArticle(id, setVisible);
   return (
     <>
       <Loading visible={visible}>
