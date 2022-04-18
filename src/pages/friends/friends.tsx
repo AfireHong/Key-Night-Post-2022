@@ -25,13 +25,11 @@ const Friends: FC = () => {
     <PageWrapper title={"友情链接"}>
       <List>
         {list?.map((item) => (
-          <div
-            className="list-item"
-            key={item.id}
-            onClick={() => jumpLink(item.link)}
-          >
+          <div className="list-item" key={item.id}>
             <FontAwesomeIcon icon={faLink}></FontAwesomeIcon>
-            <span className="item-name">{item.name}</span>
+            <span className="item-name" onClick={() => jumpLink(item.link)}>
+              {item.name}
+            </span>
             <span className="item-desc">{item.description}</span>
           </div>
         ))}
@@ -41,19 +39,21 @@ const Friends: FC = () => {
 };
 const List = styled.div`
   overflow: hidden;
-
   .list-item {
-    cursor: pointer;
     margin-bottom: 10px;
     overflow: hidden;
-
+    display: flex;
+    align-items: center;
     > .item-name {
+      cursor: pointer;
       font-weight: 600;
-      width: 80px;
+      min-width: 80px;
       display: inline-block;
       margin-right: 20px;
       margin-left: 10px;
-
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
       &:hover {
         color: #929090;
       }
@@ -62,6 +62,9 @@ const List = styled.div`
     > .item-desc {
       font-size: 8px;
       color: #867b7b;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 `;
