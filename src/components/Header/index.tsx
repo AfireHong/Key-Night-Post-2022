@@ -8,7 +8,7 @@ const Header: FC = () => {
     // { title: "分类", path: "/category" },
     { title: "归档", path: "/archive" },
     { title: "关于", path: "/about" },
-    // { title: "友链", path: "/friends" },
+    { title: "友链", path: "/friends" },
   ];
   const [showRight, switchMenu] = useState(false);
   const headerRef = useRef(null);

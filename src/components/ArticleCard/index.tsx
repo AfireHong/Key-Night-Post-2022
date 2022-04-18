@@ -26,7 +26,7 @@ const ArticleCard: FC<CardProps> = (props) => {
     >
       {info.img_url ? (
         <div className="card-img">
-          <img src={info.img_url} alt="" />
+          <img src={info.img_url} onClick={toArticlePage} alt="" />
         </div>
       ) : (
         ""

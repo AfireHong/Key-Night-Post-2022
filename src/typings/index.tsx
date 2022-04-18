@@ -37,3 +37,17 @@ export interface yearArticle {
   year: string;
   list: Iarticle[];
 }
+
+export interface friend {
+  id?: string;
+  name: string;
+  link: string;
+  avatar: string;
+  description: string;
+  create_time?: string;
+  is_show?: number;
+}
+export interface getFriendListRsp {
+  rows: friend[];
+  count: number;
+}

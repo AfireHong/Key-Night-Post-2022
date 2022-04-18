@@ -32,6 +32,11 @@ const Tag: FC = () => {
       {name}
     </>
   );
+  const fomatDate = (date: string | undefined) => {
+    const pre = date?.split(" ")[0].split("-");
+    // @ts-ignore
+    return [pre[1], pre[2]].join("-");
+  };
   return (
     <Wrapper title={titleContent()}>
       <TagPage>
@@ -49,7 +54,7 @@ const Tag: FC = () => {
                     key={article.article_id}
                   >
                     <div className="list-date">
-                      {article?.create_time?.split(" ")[0]}
+                      {fomatDate(article?.create_time)}
                     </div>
                     <div className="list-title">{article.title}</div>
                   </div>
