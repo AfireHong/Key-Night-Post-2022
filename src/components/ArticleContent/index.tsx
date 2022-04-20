@@ -52,7 +52,7 @@ const ArticleContent = styled.div`
   animation: contentSlideIn 1s;
   .article {
     margin: 40px 10px;
-    background: #faf6e5;
+    background: rgb(254 254 249);
     padding: 20px 16px 40px 16px;
     min-height: 50vh;
     box-shadow: 0 10px 20px rgb(0 0 0 / 20%);
@@ -73,6 +73,9 @@ const ArticleContent = styled.div`
     border-radius: 5px;
     overflow: scroll;
     background: #2f2f2f;
+    code {
+      color: #fff;
+    }
     ol {
       list-style: decimal;
       margin: 0;

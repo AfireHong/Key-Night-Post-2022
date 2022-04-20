@@ -17,6 +17,9 @@ const ArticleCard: FC<CardProps> = (props) => {
   // const tags = info.tags.map((item) => (
   //   <span key={item.tag_id}>{item.tag_name}</span>
   // ));
+  const toCatePage = () => {
+    console.log("TODO");
+  };
   return (
     <ArticleCardStyle
       img_url={info.img_url}
@@ -41,7 +44,7 @@ const ArticleCard: FC<CardProps> = (props) => {
             <FontAwesomeIcon icon={faClock} />
             {info.create_time?.split(" ")[0]}
           </span>
-          <span className="cate-info">
+          <span className="cate-info" onClick={() => toCatePage()}>
             <FontAwesomeIcon icon={faBox} />
             {info.cate?.cate_name || ""}
           </span>

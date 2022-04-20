@@ -1,11 +1,13 @@
-export interface Icate {
+export interface cate {
   cate_id: number;
   cate_name: string;
+  count: number;
 }
 
-export interface Itag {
+export interface tag {
   tag_id: number;
   tag_name: string;
+  count: number;
 }
 export interface Iarticle {
   article_id: number;
@@ -14,8 +16,8 @@ export interface Iarticle {
   create_time?: string;
   modify_time?: string;
   content?: string;
-  cate?: Icate;
-  tags?: Itag[];
+  cate?: cate;
+  tags?: tag;
   img_url?: string;
   view_count?: number;
 }
@@ -27,11 +29,6 @@ export interface ResponseData<T = any> {
   code: number;
   msg: string;
   data: T;
-}
-export interface tag {
-  tag_id: number;
-  tag_name: string;
-  count: number;
 }
 export interface yearArticle {
   year: string;

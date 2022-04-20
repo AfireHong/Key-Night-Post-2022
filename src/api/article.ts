@@ -7,7 +7,10 @@ export default new (class Article extends request {
   articleInfo(id: number | string): Promise<ResponseData> {
     return this.axios("get", "/article", { params: { id } });
   }
-  articleByTAg(id: string): Promise<ResponseData<yearArticle[]>> {
+  articleByTag(id: string): Promise<ResponseData<yearArticle[]>> {
     return this.axios("get", "/tag/article", { params: { id } });
+  }
+  articleByCate(id: string): Promise<ResponseData<yearArticle[]>> {
+    return this.axios("get", "/cate/article", { params: { id } });
   }
 })();

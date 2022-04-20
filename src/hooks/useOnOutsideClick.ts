@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-export default function useOnClickOutside(
-  ref: React.MutableRefObject<null>,
+import { useEffect, MutableRefObject } from "react";
+const useOnClickOutside = (
+  ref: MutableRefObject<null>,
   callback: () => void
-) {
+) => {
   useEffect(() => {
     function handler(event: Event) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -13,4 +13,5 @@ export default function useOnClickOutside(
     window.addEventListener("click", handler);
     return () => window.removeEventListener("click", handler);
   }, [callback, ref]);
-}
+};
+export default useOnClickOutside;
