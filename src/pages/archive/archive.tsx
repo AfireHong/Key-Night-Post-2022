@@ -12,7 +12,7 @@ import Fade from "@mui/material/Fade";
 
 const useTags = () => {
   const history = useHistory();
-  const [tags, setTags] = useState<tag[]>();
+  const [tags, setTags] = useState<tag[]>([]);
   const getTags = useCallback(async () => {
     const res = await Tag.tagList();
     if (res.code === 200) {
@@ -33,7 +33,7 @@ const useTags = () => {
 };
 const useCate = () => {
   const history = useHistory();
-  const [cates, setCates] = useState<cate[]>();
+  const [cates, setCates] = useState<cate[]>([]);
   const getList = useCallback(async () => {
     try {
       const res = await Cate.cateList();

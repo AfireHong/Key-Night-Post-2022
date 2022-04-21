@@ -1,4 +1,4 @@
-import { yearArticle } from "@/typings";
+import { filterRsp, yearArticle } from "@/typings";
 import article from "@/api/article";
 import { useHistory } from "react-router-dom";
 import { useState, useCallback, useEffect, FC } from "react";
@@ -10,7 +10,7 @@ interface FilterProps {
 }
 const Index: FC<FilterProps> = ({ id, type, count }) => {
   const history = useHistory();
-  const [list, setList] = useState<yearArticle[]>();
+  const [data, setList] = useState<filterRsp>();
   const getArticle = useCallback(async () => {
     if (type === "tag") {
       const res = await article.articleByTag(id);
@@ -39,9 +39,9 @@ const Index: FC<FilterProps> = ({ id, type, count }) => {
   }, [getArticle]);
   return (
     <Page>
-      <div>共{count}篇</div>
-      {list?.length ? (
-        list?.map((item, index) => (
+      <div>共{data?.count || count}篇</div>
+      {data?.list?.length ? (
+        data.list?.map((item, index) => (
           <div className="year-content" key={index}>
             <div className="year">
               <h2>{item.year}</h2>
