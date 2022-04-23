@@ -1,6 +1,6 @@
 import { filterRsp } from "@/typings";
 import article from "@/api/article";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import PageWrapper from "@/components/PageWrapper";
 import { useState, useCallback, useEffect, FC } from "react";
 import styled from "styled-components";
@@ -28,9 +28,9 @@ const Index: FC<FilterProps> = ({ type, id }) => {
     }
   }, [id, type]);
   const toArticlePage = (id: string | number) => {
-    history.push("/article", { id });
+    history.push(`/article/${id}`);
   };
-  const fomatDate = (date: string | undefined) => {
+  const formatDate = (date: string | undefined) => {
     const pre = date?.split(" ")[0].split("-");
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
@@ -66,7 +66,7 @@ const Index: FC<FilterProps> = ({ type, id }) => {
                     key={article.article_id}
                   >
                     <div className="list-date">
-                      {fomatDate(article?.create_time)}
+                      {formatDate(article?.create_time)}
                     </div>
                     <div className="list-title">{article.title}</div>
                   </div>
