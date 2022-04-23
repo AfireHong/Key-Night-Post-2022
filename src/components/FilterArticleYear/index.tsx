@@ -1,27 +1,29 @@
-import { filterRsp, yearArticle } from "@/typings";
+import { filterRsp } from "@/typings";
 import article from "@/api/article";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+import PageWrapper from "@/components/PageWrapper";
 import { useState, useCallback, useEffect, FC } from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBox } from "@fortawesome/free-solid-svg-icons";
 interface FilterProps {
   id: string;
   type: string;
-  count?: number;
 }
-const Index: FC<FilterProps> = ({ id, type, count }) => {
+const Index: FC<FilterProps> = ({ type, id }) => {
   const history = useHistory();
-  const [data, setList] = useState<filterRsp>();
+  const [data, setData] = useState<filterRsp>();
   const getArticle = useCallback(async () => {
     if (type === "tag") {
       const res = await article.articleByTag(id);
       if (res.code === 200) {
-        setList(res.data);
+        setData(res.data);
       }
     }
     if (type === "cate") {
       const res = await article.articleByCate(id);
       if (res.code === 200) {
-        setList(res.data);
+        setData(res.data);
       }
     }
   }, [id, type]);
@@ -34,38 +36,49 @@ const Index: FC<FilterProps> = ({ id, type, count }) => {
     // @ts-ignore
     return [pre[1], pre[2]].join("-");
   };
+  const titleContent = () => {
+    const name = data?.name || "";
+    return (
+      <>
+        <FontAwesomeIcon style={{ marginRight: "4px" }} icon={faBox} />
+        {name}
+      </>
+    );
+  };
   useEffect(() => {
     getArticle();
   }, [getArticle]);
   return (
-    <Page>
-      <div>共{data?.count || count}篇</div>
-      {data?.list?.length ? (
-        data.list?.map((item, index) => (
-          <div className="year-content" key={index}>
-            <div className="year">
-              <h2>{item.year}</h2>
-            </div>
-            <div className="list">
-              {item.list.map((article) => (
-                <div
-                  className="list-item"
-                  onClick={() => toArticlePage(article.article_id)}
-                  key={article.article_id}
-                >
-                  <div className="list-date">
-                    {fomatDate(article?.create_time)}
+    <PageWrapper title={titleContent()}>
+      <Page>
+        <div>共{data?.count}篇</div>
+        {data?.list?.length ? (
+          data.list?.map((item, index) => (
+            <div className="year-content" key={index}>
+              <div className="year">
+                <h2>{item.year}</h2>
+              </div>
+              <div className="list">
+                {item.list.map((article) => (
+                  <div
+                    className="list-item"
+                    onClick={() => toArticlePage(article.article_id)}
+                    key={article.article_id}
+                  >
+                    <div className="list-date">
+                      {fomatDate(article?.create_time)}
+                    </div>
+                    <div className="list-title">{article.title}</div>
                   </div>
-                  <div className="list-title">{article.title}</div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
-        ))
-      ) : (
-        <div>暂无内容</div>
-      )}
-    </Page>
+          ))
+        ) : (
+          <div>暂无内容</div>
+        )}
+      </Page>
+    </PageWrapper>
   );
 };
 

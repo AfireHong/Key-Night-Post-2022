@@ -12,17 +12,13 @@ const ArticleCard: FC<CardProps> = (props) => {
   const { info, index } = props;
   const history = useHistory();
   const toArticlePage = () => {
-    history.push("./article", { id: info.article_id });
+    history.push(`./article/${info.article_id}`);
   };
   // const tags = info.tags.map((item) => (
   //   <span key={item.tag_id}>{item.tag_name}</span>
   // ));
   const toCatePage = (item: Iarticle) => {
-    history.push("/category", {
-      id: item.cate?.cate_id,
-      name: item.cate?.cate_name,
-      count: item.cate?.count,
-    });
+    history.push(`/category/${item.cate?.cate_id}`);
   };
   return (
     <ArticleCardStyle

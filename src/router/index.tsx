@@ -13,23 +13,19 @@ const routes: RouteConfig[] = [
     component: about,
   },
   {
-    path: "/category",
-    component: category,
-  },
-  {
     path: "/archive",
     component: archive,
   },
   {
-    path: "/article",
+    path: "/article/:id",
     component: article,
   },
   {
-    path: "/tag",
+    path: "/tag/:id",
     component: lazy(() => import("@/pages/tag/tag")),
   },
   {
-    path: "/category",
+    path: "/category/:id",
     component: lazy(() => import("@/pages/category/category")),
   },
   {

@@ -20,11 +20,7 @@ const useTags = () => {
     }
   }, []);
   const tagClick = (item: tag) => {
-    history.push("/tag", {
-      id: item.tag_id,
-      name: item.tag_name,
-      count: item.count,
-    });
+    history.push(`/tag/${item.tag_id}`);
   };
   useEffect(() => {
     getTags();
@@ -43,11 +39,7 @@ const useCate = () => {
     } catch (e) {}
   }, []);
   const cateClick = (item: cate) => {
-    history.push("/category", {
-      id: item.cate_id,
-      name: item.cate_name,
-      count: item.count,
-    });
+    history.push(`/category/${item.cate_id}`);
   };
   useEffect(() => {
     getList();

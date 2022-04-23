@@ -37,6 +37,8 @@ export interface yearArticle {
 export interface filterRsp {
   list: yearArticle[];
   count: number;
+  id?: string;
+  name?: string;
 }
 export interface friend {
   id?: string;

@@ -1,6 +1,6 @@
 import article from "@/api/article";
 import { useCallback, useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import { useParams } from "react-router";
 import { FC } from "react";
 import { Iarticle } from "@/typings";
 import Content from "@/components/ArticleContent";
@@ -26,8 +26,8 @@ const useArticle = (id: string, setVisible: (value: boolean) => void) => {
   return [articleInfo];
 };
 const Article: FC = () => {
-  const history = useHistory();
-  const { id } = history.location.state as articleId;
+  const params = useParams();
+  const { id } = params as articleId;
   const [visible, setVisible] = useState(true);
   const [articleInfo] = useArticle(id, setVisible);
   return (
