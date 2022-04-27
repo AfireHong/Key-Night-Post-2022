@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const HomeWrapper = styled.div`
   margin: 0 auto;
   padding-bottom: 10px;
+  position: relative;
   .home-banner {
     width: 100%;
     height: 200px;

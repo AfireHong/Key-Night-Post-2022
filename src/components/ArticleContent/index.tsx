@@ -1,43 +1,88 @@
-import { marked } from "marked";
-import Prism from "prismjs";
-import "prismjs/themes/prism-dark.min.css";
 import styled from "styled-components";
-
+import { Iarticle, tag } from "@/typings";
 import { FC } from "react";
+import Markdown from "../Markdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTag, faClock } from "@fortawesome/free-solid-svg-icons";
+import { formatDate } from "@/utils";
+import Chip from "@mui/material/Chip";
+import { useHistory } from "react-router";
 
-interface Icontent {
-  title: string | undefined;
-  content: string | undefined;
-}
-const translateMarkdown = (text: string) => {
-  marked.setOptions({
-    renderer: new marked.Renderer(undefined),
-    highlight(code) {
-      return Prism.highlight(code, Prism.languages.javascript, "javascript");
-    },
-    pedantic: false,
-    gfm: true,
-    breaks: false,
-    sanitize: false,
-    smartLists: true,
-    smartypants: false,
-    xhtml: false,
-  });
-  return marked(text);
+const CopyRight = () => {
+  return (
+    <CopyRightWrap>
+      <div className="copyright">
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+          <img
+            alt="知识共享许可协议"
+            src="https://i.creativecommons.org/l/by/4.0/80x15.png"
+          />
+        </a>
+        <br />
+        本作品采用
+        <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+          知识共享署名 4.0 国际许可协议
+        </a>
+        进行许可。
+        <br />
+        转载请注明来源。
+      </div>
+    </CopyRightWrap>
+  );
 };
 
-const Content: FC<Icontent> = (props) => {
+interface TagsProps {
+  tags: tag[] | undefined;
+}
+const Tags: FC<TagsProps> = ({ tags }) => {
+  const history = useHistory();
+  const tagClick = (item: tag) => {
+    history.push(`/tag/${item.tag_id}`);
+  };
+  return (
+    <TagsWrap>
+      {tags?.length ? (
+        <div className="tags-list">
+          <FontAwesomeIcon
+            icon={faTag}
+            style={{ marginRight: "8px", marginBottom: "8px" }}
+          />
+          {tags.map((item) => {
+            return (
+              <Chip
+                key={item.tag_id}
+                size={"small"}
+                style={{ marginRight: "8px", marginBottom: "8px" }}
+                onClick={() => tagClick(item)}
+                label={item.tag_name}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        "无标签"
+      )}
+    </TagsWrap>
+  );
+};
+const Content: FC<Iarticle> = (props) => {
+  const { content, title, copyright, create_time, tags } = props;
+
   return (
     <>
       <ArticleContent>
         <div className="article">
-          <div className="article-title">{props.title}</div>
+          <div className="article-title">{title}</div>
+          <div className="article-base-info">
+            <div className="date">
+              <FontAwesomeIcon icon={faClock} />
+              {formatDate(create_time)}
+            </div>
+          </div>
           <div className="title-bottom-line"></div>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: translateMarkdown(props.content || ""),
-            }}
-          ></div>
+          <Markdown content={content} />
+          <Tags tags={tags} />
+          {copyright === 1 && <CopyRight />}
         </div>
       </ArticleContent>
     </>
@@ -60,7 +105,18 @@ const ArticleContent = styled.div`
   .article-title {
     font-size: 24px;
     text-align: center;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+  }
+  .article-base-info {
+    margin-bottom: 20px;
+    svg {
+      margin-right: 4px;
+    }
+    .date {
+      text-align: center;
+      font-size: 12px;
+      color: #7d7d7d;
+    }
   }
   .title-bottom-line {
     width: 120px;
@@ -68,49 +124,6 @@ const ArticleContent = styled.div`
     background: #d3cdbb;
     margin: 0 auto;
   }
-  pre {
-    padding: 8px 2px;
-    border-radius: 5px;
-    overflow: scroll;
-    background: #2f2f2f;
-    code {
-      color: #fff;
-    }
-    ol {
-      list-style: decimal;
-      margin: 0;
-      margin-left: 40px;
-      padding: 0;
-      li {
-        list-style: decimal-leading-zero;
-        position: relative;
-        padding-left: 10px;
-        .line-num {
-          position: absolute;
-          left: -40px;
-          top: 0;
-          width: 40px;
-          height: 100%;
-          border-right: 1px solid rgba(0, 0, 0, 0.66);
-        }
-      }
-    }
-    b.name {
-      position: absolute;
-      top: 2px;
-      right: 12px;
-      z-index: 10;
-      color: #999;
-      pointer-events: none;
-    }
-  }
-
-  blockquote {
-    border-left: 3px solid #d3cdbb;
-    margin-left: 12px;
-    padding-left: 10px;
-  }
-
   @keyframes contentSlideIn {
     from {
       opacity: 0;
@@ -120,5 +133,29 @@ const ArticleContent = styled.div`
       opacity: 1;
       transform: translateY(0);
     }
+  }
+`;
+
+const CopyRightWrap = styled.div`
+  margin-top: 60px;
+  font-size: 12px;
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: #0269c8;
+    border-bottom: 1px solid #d1e9ff;
+  }
+`;
+
+const TagsWrap = styled.div`
+  margin-top: 40px;
+  font-size: 12px;
+  .tags-list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  svg {
+    font-size: 20px;
   }
 `;

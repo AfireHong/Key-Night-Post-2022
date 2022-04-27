@@ -132,7 +132,7 @@ const ArticleCardStyle = styled.div`
     .article-summary {
       color: #85888f;
       font-size: 0.8em;
-      margin-top: 1.4em;
+      margin-top: 1em;
       overflow: hidden;
       text-overflow: ellipsis;
       display: -webkit-box;

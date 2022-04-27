@@ -10,16 +10,17 @@ export interface tag {
   count: number;
 }
 export interface Iarticle {
-  article_id: number;
-  title: string;
+  article_id?: number;
+  title?: string;
   summary?: string;
   create_time?: string;
   modify_time?: string;
   content?: string;
   cate?: cate;
-  tags?: tag;
+  tags?: tag[];
   img_url?: string;
   view_count?: number;
+  copyright?: number;
 }
 
 export interface IarticleLsitItem {

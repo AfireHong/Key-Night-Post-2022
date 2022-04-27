@@ -27,7 +27,7 @@ const Index: FC<FilterProps> = ({ type, id }) => {
       }
     }
   }, [id, type]);
-  const toArticlePage = (id: string | number) => {
+  const toArticlePage = (id: string | number | undefined) => {
     history.push(`/article/${id}`);
   };
   const formatDate = (date: string | undefined) => {
@@ -62,7 +62,7 @@ const Index: FC<FilterProps> = ({ type, id }) => {
                 {item.list.map((article) => (
                   <div
                     className="list-item"
-                    onClick={() => toArticlePage(article.article_id)}
+                    onClick={() => toArticlePage(article?.article_id)}
                     key={article.article_id}
                   >
                     <div className="list-date">

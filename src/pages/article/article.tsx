@@ -34,10 +34,7 @@ const Article: FC = () => {
     <>
       <Loading visible={visible}>
         <PageArticle>
-          <Content
-            title={articleInfo?.title}
-            content={articleInfo?.content}
-          ></Content>
+          <Content {...articleInfo}></Content>
         </PageArticle>
       </Loading>
     </>
